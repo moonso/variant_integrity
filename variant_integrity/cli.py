@@ -279,8 +279,8 @@ def father(ctx):
             ]
             #First check if the child has the variant:
             if child_genotype.has_variant:
-                # If all individuals are high quality we count the variant
-                if check_high_quality(duo_genotypes, ctx.parent.gq_treshold):
+                # If child have high quality we count the variant
+                if check_high_quality([child_genotype], ctx.parent.gq_treshold):
                     children[child_id]['number_calls'] += 1
                     if check_common_variant(duo_genotypes):
                         children[child_id]['common_variants'] += 1
