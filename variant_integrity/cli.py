@@ -55,7 +55,7 @@ logger = logging.getLogger(__name__)
 @click.pass_context
 def cli(ctx, variant_file, family_file, family_type, gq_treshold, to_json,
     outfile, verbose):
-    """Puzzle: manage DNA variant resources."""
+    """Check for pedigree inconsistensies."""
     # configure root logger to print to STDERR
     loglevel = LEVELS.get(min(verbose, 3))
     configure_stream(level=loglevel)
@@ -104,7 +104,7 @@ def cli(ctx, variant_file, family_file, family_type, gq_treshold, to_json,
                         ', '.join(family_parser.individuals)))
         logger.info("Individuals in VCF file: {0}".format(', '.join(vcf_individuals)))
         logger.info("Exiting...")
-        sys.exit(1)
+        ctx.abort()
     
     ctx.variant_file = variant_file
     ctx.header_line = head.header
